@@ -9,6 +9,46 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/radio_group"
+        app:layout_constraintBottom_toTopOf="@+id/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="16dp"
+            android:text="@string/button_glide" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="16dp"
+            android:text="@string/button_loadapp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:textSize="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/button_retrofit" />
+    </RadioGroup>
+
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
@@ -17,6 +57,7 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:buttonColour="@color/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
