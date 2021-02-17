@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:layout_marginTop="16dp"
-        android:text="file name placeholder, file name placeholder, file name placeholder, file name placeholder, file name placeholder,file name placeholder"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,7 +51,6 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
-        android:text="Success"
         app:layout_constraintBottom_toBottomOf="@id/download_status_title"
         app:layout_constraintStart_toEndOf="@id/download_status_title" />
 

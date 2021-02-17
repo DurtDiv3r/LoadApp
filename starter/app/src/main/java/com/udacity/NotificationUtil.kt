@@ -18,7 +18,7 @@ private val FLAGS = 0
 
 fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context, fileName: String, downloadStatus: String) {
 
-    val contentIntent = Intent(applicationContext, DetailActivity::class.java).putExtra("filename", fileName).putExtra("downloadstatus", downloadStatus)
+    val contentIntent = Intent(applicationContext, DetailActivity::class.java).putExtra("filename", fileName).putExtra("downloadstatus", downloadStatus).putExtra("notificationid", NOTIFICATION_ID)
     val pendingIntent = PendingIntent.getActivity(applicationContext, NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
     val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.notification_channel_id))
@@ -26,9 +26,8 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setContentTitle(applicationContext
             .getString(R.string.notification_title))
         .setContentText(messageBody)
-        .setContentIntent(pendingIntent)
         .setAutoCancel(true)
+        .addAction(0,"show details", pendingIntent)
     notify(NOTIFICATION_ID, builder.build())
-
 }
 
