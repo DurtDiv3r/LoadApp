@@ -13,7 +13,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -41,15 +40,15 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
-        createChannel(getString(R.string.notification_channel_id), getString(R.string.notification_channel_name))
+        createChannel(getString(R.string.notification_channel_id), CHANNEL_ID)
 
         custom_button.setOnClickListener {
             custom_button.buttonState = ButtonState.Clicked
             selectedRadioButton = radio_group.checkedRadioButtonId
             selectedUrl = when(selectedRadioButton) {
-                R.id.radioButton1 -> URL_1
-                R.id.radioButton2 -> URL_2
-                R.id.radioButton3 -> URL_3
+                R.id.radioButton1 -> URL_GLIDE
+                R.id.radioButton2 -> URL_LOADAPP
+                R.id.radioButton3 -> URL_RETRO
                 else -> ""
             }
             download(selectedUrl)
@@ -60,36 +59,46 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             val query = DownloadManager.Query()
+
+            val fileName = when(selectedUrl) {
+                URL_GLIDE -> getString(R.string.glide_title)
+                URL_LOADAPP -> getString(R.string.loadapp_title)
+                URL_RETRO -> getString(R.string.retrofit_title)
+                else -> ""
+            }
+
+            var downloadStatus = ""
+
             if (id != null) {
                 query.setFilterById(id)
 
                 val cursor: Cursor = downloadManager.query(query)
                 cursor.moveToFirst()
+                val notificationManager = ContextCompat.getSystemService(application, NotificationManager::class.java) as NotificationManager
+
                 if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
                     custom_button.buttonState = ButtonState.Completed
                     //Todo check whether to clear selected radio button on download complete
 //                    radio_group.clearCheck()
+                    downloadStatus = "Success"
 
-                    val notificationManager = ContextCompat.getSystemService(application, NotificationManager::class.java) as NotificationManager
-                    notificationManager.sendNotification("DOWNLOAD COMPLETE", context)
                 } else {
-                    Toast.makeText(context, "Download unsuccessful", Toast.LENGTH_LONG).show()
+                    downloadStatus = "Failed"
                 }
+                notificationManager.sendNotification(getString(R.string.notification_description), context, fileName, downloadStatus)
+
                 cursor.close()
             }
         }
     }
 
     private fun createChannel(channelId: String, channelName: String) {
-        // TODO: Step 1.6 START create a channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 channelId,
                 channelName,
-                // TODO: Step 2.4 change importance
                 NotificationManager.IMPORTANCE_HIGH
-            )// TODO: Step 2.6 disable badges for this channel
-                .apply {
+            ).apply {
                     setShowBadge(false)
                 }
 
@@ -102,13 +111,10 @@ class MainActivity : AppCompatActivity() {
                 NotificationManager::class.java
             )
             notificationManager.createNotificationChannel(notificationChannel)
-
         }
-        // TODO: Step 1.6 END create a channel
     }
 
     private fun download(url: String) {
-
         if (url.isNotEmpty()) {
             custom_button.buttonState = ButtonState.Loading
 
@@ -124,8 +130,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(applicationContext, getString(R.string.button_select), Toast.LENGTH_LONG).show()
         }
-
-
 
         //TODO check whether it's worth animating based on download progress
 //        Thread {
@@ -160,9 +164,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val URL_1 = "https://github.com/bumptech/glide/archive/master.zip"
-        private const val URL_2 = "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
-        private const val URL_3 = "https://github.com/square/retrofit/archive/master.zip"
+        private const val URL_GLIDE = "https://github.com/bumptech/glide/archive/master.zip"
+        private const val URL_LOADAPP = "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        private const val URL_RETRO = "https://github.com/square/retrofit/archive/master.zip"
         private const val CHANNEL_ID = "channelId"
     }
 

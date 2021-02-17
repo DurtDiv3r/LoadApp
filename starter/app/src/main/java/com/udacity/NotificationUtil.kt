@@ -16,12 +16,10 @@ private val FLAGS = 0
 
 //Reference Eggtimer App
 
-fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
+fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context, fileName: String, downloadStatus: String) {
 
-    val contentIntent = Intent(applicationContext, DetailActivity::class.java)
+    val contentIntent = Intent(applicationContext, DetailActivity::class.java).putExtra("filename", fileName).putExtra("downloadstatus", downloadStatus)
     val pendingIntent = PendingIntent.getActivity(applicationContext, NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-
 
     val builder = NotificationCompat.Builder(applicationContext, applicationContext.getString(R.string.notification_channel_id))
         .setSmallIcon(R.drawable.ic_launcher_foreground)
