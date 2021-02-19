@@ -59,7 +59,7 @@ class LoadingButton @JvmOverloads constructor(
         isClickable = true
         button = findViewById(R.id.custom_button)
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
-            buttonColour = getColor(R.styleable.LoadingButton_buttonColour, 0);
+            buttonColour = getColor(R.styleable.LoadingButton_buttonColour, 0)
             buttonTextColour = getColor(R.styleable.LoadingButton_buttonTextColour, 0)
         }
     }
@@ -96,8 +96,6 @@ class LoadingButton @JvmOverloads constructor(
     private fun drawBaseButton(canvas: Canvas?, buttonState: ButtonState) {
         paint.color = buttonColour
         canvas?.drawRect(0F, 0F, widthSize.toFloat(), heightSize.toFloat(), paint)
-
-        paint.color = Color.WHITE
         updateButtonText(canvas, buttonState)
         canvas?.save()
     }
