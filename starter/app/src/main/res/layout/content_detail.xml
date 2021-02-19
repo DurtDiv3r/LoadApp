@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DetailActivity"
-    tools:showIn="@layout/activity_detail">
+    tools:showIn="@layout/activity_detail"
+    app:layoutDescription="@xml/content_detail_scene">
 
     <TextView
         android:id="@+id/download_file_title"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="File Name:"
-        android:textSize="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        android:text="@string/detail_filename"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/download_file_name"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
@@ -37,18 +32,14 @@
         android:id="@+id/download_status_title"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:text="Status:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/download_file_name" />
+        android:textSize="16sp"
+        android:text="@string/detail_status" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/download_status"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@id/download_status_title"
@@ -61,11 +52,7 @@
         android:text="@string/notification_button"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:background="@color/colorAccent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:background="@color/colorAccent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
