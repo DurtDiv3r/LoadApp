@@ -20,4 +20,5 @@
     <string name="download_unsuccessful">Download unsuccessful</string>
     <string name="detail_status">Status:</string>
     <string name="detail_filename">File Name:</string>
+    <string name="download_image_description">Download image</string>
 </resources>

@@ -15,7 +15,8 @@
         android:id="@+id/download_image"
         android:src="@drawable/ic_baseline_cloud_download_24"
         android:background="@color/cardview_dark_background"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/download_image_description" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -33,7 +34,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/glide_title" />
 
         <RadioButton
@@ -43,7 +44,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/loadapp_title" />
 
         <RadioButton
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:layout_marginEnd="16dp"
             android:text="@string/retrofit_title" />
     </RadioGroup>
@@ -60,12 +61,13 @@
     <com.udacity.LoadingButton
         android:id="@+id/custom_button"
         android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="60dp"
         android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
-        app:buttonColour="@color/colorPrimary" />
+        app:buttonColour="@color/colorPrimary"
+        app:buttonTextColour="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

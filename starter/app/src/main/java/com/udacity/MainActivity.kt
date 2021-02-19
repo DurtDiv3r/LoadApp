@@ -78,15 +78,12 @@ class MainActivity : AppCompatActivity() {
 
                 if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
                     custom_button.buttonState = ButtonState.Completed
-                    //Todo check whether to clear selected radio button on download complete
-//                    radio_group.clearCheck()
                     downloadStatus = "Success"
 
                 } else {
                     downloadStatus = "Failed"
                 }
                 notificationManager.sendNotification(getString(R.string.notification_description), context, fileName, downloadStatus)
-
                 cursor.close()
             }
         }

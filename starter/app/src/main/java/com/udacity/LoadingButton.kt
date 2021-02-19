@@ -26,7 +26,8 @@ class LoadingButton @JvmOverloads constructor(
     private var progress = 0F
 
     private var buttonColour = 0
-    var button: LoadingButton
+    private var buttonTextColour = 0
+    private var button: LoadingButton
     private var buttonText = ""
 
 
@@ -37,7 +38,7 @@ class LoadingButton @JvmOverloads constructor(
         typeface = Typeface.create("", Typeface.BOLD)
     }
 
-    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { _, _, new ->
         when (new) {
             ButtonState.Clicked -> Log.d("LOADINGBUTTON", "CLICKED")
             ButtonState.Loading -> {
@@ -58,7 +59,8 @@ class LoadingButton @JvmOverloads constructor(
         isClickable = true
         button = findViewById(R.id.custom_button)
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
-            buttonColour = getColor(R.styleable.LoadingButton_buttonColour, 0)
+            buttonColour = getColor(R.styleable.LoadingButton_buttonColour, 0);
+            buttonTextColour = getColor(R.styleable.LoadingButton_buttonTextColour, 0)
         }
     }
 
@@ -101,7 +103,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun updateButtonText(canvas: Canvas?, buttonState: ButtonState) {
-        paint.color = ResourcesCompat.getColor(resources, R.color.white, null)
+        paint.color = buttonTextColour
         buttonText = when (buttonState) {
             ButtonState.Clicked -> context.getString(R.string.button_preparing)
             ButtonState.Loading -> context.getString(R.string.button_loading)
