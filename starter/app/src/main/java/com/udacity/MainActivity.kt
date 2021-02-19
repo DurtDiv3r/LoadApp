@@ -130,37 +130,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(applicationContext, getString(R.string.button_select), Toast.LENGTH_LONG).show()
         }
-
-        //TODO check whether it's worth animating based on download progress
-//        Thread {
-//            var downloading = true
-//            while (downloading) {
-//                val query = DownloadManager.Query()
-//                query.setFilterById(downloadID)
-//                val cursor: Cursor = downloadManager.query(query)
-//                cursor.moveToFirst()
-//                val bytesDownloaded =
-//                    cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
-//                Log.d("DOWNLOADING", "So far: $bytesDownloaded")
-//                val bytesTotal =
-//                    cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
-//
-//                if (bytesTotal != -1) {
-////                    val dlProgress = (bytesDownloaded / bytesTotal * 100).toDouble()
-//                    var dlProgress = (bytesDownloaded.toDouble() / bytesTotal) * 100
-////                runOnUiThread { mProgressBar.setProgress(dl_progress.toInt()) }
-//                    Log.d("DOWNLOADING", "$bytesDownloaded / $bytesTotal")
-//                    Log.d("DOWNLOADING", "progress ${dlProgress.toInt()}")
-//                }
-//
-////                Log.d(SyncStateContract.Constants.MAIN_VIEW_ACTIVITY, statusMessage(cursor))
-//                if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)) == DownloadManager.STATUS_SUCCESSFUL) {
-//                    downloading = false
-//                }
-//                cursor.close()
-//            }
-//        }.start()
-
     }
 
     companion object {

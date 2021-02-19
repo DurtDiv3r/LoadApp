@@ -30,5 +30,4 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }
